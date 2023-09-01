@@ -15,12 +15,12 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 public class ClienteApplicationService implements ClienteService {
-    private final ClienteRepository clineteRepository;
+    private final ClienteRepository clienteRepository;
 
     @Override
     public ClienteResponse criaCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteApplicationService - criaCliente");
-        Cliente cliente = clineteRepository.salva(new Cliente(clienteRequest));
+        Cliente cliente = clienteRepository.salva(new Cliente(clienteRequest));
         log.info("[finaliza] ClienteApplicationService - criaCliente");
         return ClienteResponse.builder()
                 .idCliente(cliente.getIdCliente())
@@ -30,7 +30,8 @@ public class ClienteApplicationService implements ClienteService {
     @Override
     public List<ClienteListResponse> buscaTodosClientes() {
         log.info("[inicia] ClienteApplicationService - buscaTodosClientes");
+        List<Cliente> clientes = clienteRepository.buscaTodosClientes();
         log.info("[finaliza] ClienteApplicationService - buscaTodosClientes");
-        return null;
+        return ClienteListResponse.converte(clientes);
     }
 }
