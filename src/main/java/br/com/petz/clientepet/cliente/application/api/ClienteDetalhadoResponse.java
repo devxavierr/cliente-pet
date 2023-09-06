@@ -1,32 +1,33 @@
 package br.com.petz.clientepet.cliente.application.api;
 
 import br.com.petz.clientepet.cliente.domain.Cliente;
-import jakarta.validation.Valid;
+import br.com.petz.clientepet.cliente.domain.Sexo;
 import lombok.Value;
 
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
 @Value
-public class ClienteListResponse {
+public class ClienteDetalhadoResponse {
     private UUID idCliente;
     private String nomeCompleto;
     private String cpf;
     private String email;
     private String celular;
+    private String telefone;
+    private Sexo sexo;
+    private Boolean aceitaTermos;
+    private LocalDateTime dataHoraDoCadastro;
 
-    public static List<ClienteListResponse> converte(List<Cliente> clientes) {
-        return clientes.stream()
-                .map(ClienteListResponse::new)
-                .collect(Collectors.toList());
-    }
-
-    public ClienteListResponse(Cliente cliente) {
+    public ClienteDetalhadoResponse(Cliente cliente) {
         this.idCliente = cliente.getIdCliente();
         this.nomeCompleto = cliente.getNomeCompleto();
         this.cpf = cliente.getCpf();
         this.email = cliente.getEmail();
         this.celular = cliente.getCelular();
+        this.telefone = cliente.getTelefone();
+        this.sexo = cliente.getSexo();
+        this.aceitaTermos = cliente.getAceitaTermos();
+        this.dataHoraDoCadastro = cliente.getDataHoraDoCadastro();
     }
-}
+
+ }
