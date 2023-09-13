@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -16,15 +17,18 @@ public class Pet {
     private  String nomePet;
     @Enumerated(EnumType.STRING)
     private Porte porte;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoPet tipoPet;
     private String microchip;
+    @NotBlank
     private String raca;
     @Enumerated(EnumType.STRING)
-    private Sexo sexoPet;
+    @NotNull
+    private SexoPet sexo;
     private String pelagemCor;
     @NotNull
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
     private String rga;
     private Integer peso;
 
